@@ -209,7 +209,7 @@ def processing_level():
     room_list = []
     room_for_door_list = []
     count = 0
-    level = f'{temp_name[:2]}. {temp_name[5:]}'
+    level = f'{temp_name[:2]}.{temp_name[5:]}'
     level_list.add(level)
     pyautogui.press('esc', interval=0.1)
     pyautogui.hotkey('shift', 'y', interval=0.1)
@@ -294,9 +294,9 @@ def processing_ladder():
     pyautogui.press('down', presses=count, interval=0.4)
     temp_name = copy_name()
     if temp_name[0:4] == 'Лест':
-        ladder_name = f'Лестничный марш между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
+        ladder_name = f'Лестн. марш между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
         if temp_room_for_ladder_list in room_for_ladder_list:
-            ladder_name = f'Лестничный марш: ({room_for_ladder_list.count(temp_room_for_ladder_list)}) между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
+            ladder_name = f'Лестн. марш: ({room_for_ladder_list.count(temp_room_for_ladder_list)}) между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
     elif temp_name[0:4] == '1Рам':
         ladder_name = f'Пандус между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
         if temp_room_for_ladder_list in room_for_ladder_list:
@@ -318,7 +318,6 @@ def processing_room(name):
         room_list.append(name2)
     else:
         paste_name(name1)
-        # room_list.append(name1)
     name_elem = name1
     return name1
 
