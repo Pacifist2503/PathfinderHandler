@@ -3,9 +3,6 @@ import pyautogui
 import pyperclip
 import time
 
-# проба с телефона
-# проба вэб
-
 start = time.time()
 # pyautogui.PAUSE = 0.2 # пауза между всеми операциями
 pyautogui.FAILSAFE = True  # остановить прогу при наведении в левый верхний угол
@@ -54,7 +51,7 @@ def addAll():
     else:
         pyautogui.alert(text='Картинка развертывания дерева не найдена', title='Внимание!', button='OK')
 
-# сменить клафиши по умолчанию (сортировка по алфавиту и выделение смежных объектов)
+# сменить клавиши по умолчанию (сортировка по алфавиту и выделение смежных объектов)
 def cmena_klav():
     pyautogui.press('tab', interval=0.2)
     pyautogui.press('alt', interval=0.1)
