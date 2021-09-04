@@ -3,6 +3,8 @@ import pyautogui
 import pyperclip
 import time
 
+# проба
+
 start = time.time()
 # pyautogui.PAUSE = 0.2 # пауза между всеми операциями
 pyautogui.FAILSAFE = True  # остановить прогу при наведении в левый верхний угол
