@@ -367,7 +367,7 @@ while True:
         pyautogui.press('enter', interval=0.1)
         finich = time.time()
         time_delta = finich - start
-        pyautogui.alert(text=f'Обработка маршей и пандусов завершена.\nЗатрачено всего времени: {time_delta // 60} мин {round(time_delta % 60)} сек', title='Внимание!', button='OK')
+        pyautogui.alert(text=f'Обработка элементов.\nЗатрачено всего времени: {time_delta // 60} мин {round(time_delta % 60)} сек', title='Внимание!', button='OK')
         break
 
 
