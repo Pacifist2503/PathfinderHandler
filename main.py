@@ -4,6 +4,7 @@ import pyperclip
 import time
 
 # проба с телефона
+# проба вэб
 
 start = time.time()
 # pyautogui.PAUSE = 0.2 # пауза между всеми операциями
