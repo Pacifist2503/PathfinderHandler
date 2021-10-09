@@ -158,15 +158,19 @@ def paste_name(name):
 
 # удалить дефолтное наименование
 def delete_str(all_str, delete_str):
-    while delete_str in all_str:
-        a1 = all_str.find(delete_str)
-        a2 = all_str[a1:]
-        if ' ' in a2:
-            a3 = a2[:a2.find(' ') + 1]
-            all_str = all_str.replace(a3, '')
-        else:
-            all_str = all_str.replace(a2, '')
-    return all_str
+    new_list = []
+    all_str = all_str.split(' ')
+    for i in all_str:
+        if delete_str not in i:
+            new_list.append(i)
+        elif delete_str in i:
+            if len(i) > len(delete_str):
+                i = i.replace(i[i.find(delete_str):], '')
+                if i != '':
+                    new_list.append(i)
+            else:
+                new_list.append(i)
+    return ' '.join(new_list)
 
 
 # прыжок
@@ -300,9 +304,9 @@ def processing_door():
     pyautogui.press('up', interval=0.1)
     temp_name = copy_name()
     if len(temp_room_for_door_list) == 2:
-        door_name = f'{temp_name[0:5]} между: {temp_room_for_door_list[0]}-{temp_room_for_door_list[1]} ({level})'
+        door_name = f'{temp_name[0:5]} между: {temp_room_for_door_list[0]} - {temp_room_for_door_list[1]} ({level})'
         if temp_room_for_door_list in room_for_door_list:
-            door_name = f'{temp_name[0:5]} ({room_for_door_list.count(temp_room_for_door_list)}) между: {temp_room_for_door_list[0]}-{temp_room_for_door_list[1]} ({level})'
+            door_name = f'{temp_name[0:5]} ({room_for_door_list.count(temp_room_for_door_list)}) между: {temp_room_for_door_list[0]} - {temp_room_for_door_list[1]} ({level})'
     else:
         door_name = f'Выход наружу из: {temp_room_for_door_list[0]} ({level})'
         if temp_room_for_door_list in room_for_door_list:
@@ -314,6 +318,7 @@ def processing_door():
     pyautogui.press('left', interval=0.1)
     pyautogui.hotkey('shift', 'a', interval=0.1)
     djamp(count)
+
 
 def processing_ladder():
     global temp_name, stop, count, ladder_name, name_elem
@@ -355,13 +360,13 @@ def processing_ladder():
     djamp(count)
     temp_name = copy_name()
     if temp_name[0:4] == 'Лест':
-        ladder_name = f'Лест. марш между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
+        ladder_name = f'Лест. марш между: {temp_room_for_ladder_list[0]} - {temp_room_for_ladder_list[1]} ({level})'
         if temp_room_for_ladder_list in room_for_ladder_list:
-            ladder_name = f'Лест.марш между: ({room_for_ladder_list.count(temp_room_for_ladder_list)}): {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
+            ladder_name = f'Лест.марш между: ({room_for_ladder_list.count(temp_room_for_ladder_list)}): {temp_room_for_ladder_list[0]} - {temp_room_for_ladder_list[1]} ({level})'
     elif temp_name[0:4] == '1Рам':
         ladder_name = f'Пандус между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
         if temp_room_for_ladder_list in room_for_ladder_list:
-            ladder_name = f'Пандус ({room_for_ladder_list.count(temp_room_for_ladder_list)}) между: {temp_room_for_ladder_list[0]}-{temp_room_for_ladder_list[1]} ({level})'
+            ladder_name = f'Пандус ({room_for_ladder_list.count(temp_room_for_ladder_list)}) между: {temp_room_for_ladder_list[0]} - {temp_room_for_ladder_list[1]} ({level})'
     room_for_ladder_list.append(temp_room_for_ladder_list)
     ladder_list.append(ladder_name)
     paste_name(ladder_name)
@@ -414,9 +419,9 @@ while True:
         end = time.time()
         time_delta = end - start
         end_rez = pyautogui.confirm(text=f'Обработка элементов завершена.\n'
-                               f'Затрачено всего времени: {time_delta // 60} мин {round(time_delta % 60)} сек\n'
-                               f'Если хотите удалить часть наименование помещения, нажмите ОК',
-                          title='Внимание!', buttons=['OK', 'Cancel'])
+                                         f'Затрачено всего времени: {time_delta // 60} мин {round(time_delta % 60)} сек\n'
+                                         f'Если хотите удалить часть наименование помещения, нажмите ОК',
+                                    title='Внимание!', buttons=['OK', 'Cancel'])
         break
 
 if end_rez == 'OK':
