@@ -25,6 +25,7 @@ room_for_door_list = []
 room_for_ladder_list = []
 
 count = 0
+count_level = 0
 
 img_list_door = os.listdir(dir_pic + '\door')
 img_list_ladder = os.listdir(dir_pic + '\ladder')
@@ -49,13 +50,10 @@ def open_app():
 
 
 # развернуть всё дерево
-def addAll():
-    img_addAll = pyautogui.locateCenterOnScreen(dir_pic + r'\addAll.PNG', confidence=0.9)
-    if img_addAll:
-        pyautogui.moveTo(img_addAll, duration=0.3)
-        pyautogui.click(pyautogui.moveRel(-5, 65, duration=0.1))
-    else:
-        pyautogui.alert(text='Картинка развертывания дерева не найдена', title='Внимание!', button='OK')
+def addAll(c_l):
+    for i in range(c_l):
+        pyautogui.press('left', interval=0.2)
+        pyautogui.press('up', interval=0.2)
 
 
 # сменить клафиши по умолчанию (сортировка по алфавиту и выделение смежных объектов)
@@ -191,7 +189,7 @@ doorError = 0
 
 
 def mainCycle():
-    global temp_name, stop, name_elem, doorError
+    global temp_name, stop, name_elem, doorError, count_level
     pyautogui.press('down', interval=0.1)
     tt = name_elem
     temp_name = copy_name()
@@ -206,6 +204,7 @@ def mainCycle():
         djamp(count)
     elif temp_name[0:4] == 'Этаж':
         processing_level()
+        count_level += 1
     elif temp_name[0:5] == 'Дверь':
         processing_door()
     elif temp_name[0:7] == 'Лестниц' or temp_name[0:4] == 'ампа':
@@ -407,10 +406,10 @@ while True:
         break
 
 stop = False
-pyautogui.press('left', presses=3, interval=0.1)
-pyautogui.press('down', interval=0.3)
-upd()
-addAll()
+# pyautogui.press('left', presses=3, interval=0.1)
+# pyautogui.press('down', interval=0.3)
+# upd()
+addAll(count_level)
 
 while True:
     mainCycle1()
@@ -427,10 +426,10 @@ while True:
 if end_rez == 'OK':
     name_room_delete = pyautogui.prompt(text='Введите наименование', title='Выбор файла', default='')
     stop = False
-    pyautogui.press('left', presses=3, interval=0.1)
-    pyautogui.press('down', interval=0.3)
-    upd()
-    addAll()
+    # pyautogui.press('left', presses=3, interval=0.1)
+    # pyautogui.press('down', interval=0.3)
+    # upd()
+    addAll(count_level)
     while True:
         mainCycle2(name_room_delete)
         if stop:
