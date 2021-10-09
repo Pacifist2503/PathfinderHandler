@@ -406,9 +406,6 @@ while True:
         break
 
 stop = False
-# pyautogui.press('left', presses=3, interval=0.1)
-# pyautogui.press('down', interval=0.3)
-# upd()
 addAll(count_level)
 
 while True:
@@ -426,9 +423,6 @@ while True:
 if end_rez == 'OK':
     name_room_delete = pyautogui.prompt(text='Введите наименование', title='Выбор файла', default='')
     stop = False
-    # pyautogui.press('left', presses=3, interval=0.1)
-    # pyautogui.press('down', interval=0.3)
-    # upd()
     addAll(count_level)
     while True:
         mainCycle2(name_room_delete)
