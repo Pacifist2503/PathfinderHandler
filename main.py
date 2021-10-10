@@ -377,10 +377,10 @@ def processing_room(name):
     name1 = name
     if level not in name:
         name1 = f'{name} ({level})'
-        if name in room_list:
-            name1 = f'{name} ({room_list.count(name)}) ({level})'
+        if delete_str(name, 'Помещение') in room_list:
+            name1 = f'{name} ({room_list.count(delete_str(name, "Помещение"))}) ({level})'
         paste_name(name1)
-        room_list.append(name)
+        room_list.append(delete_str(name, 'Помещение'))
     else:
         paste_name(name1)
     name_elem = name1
