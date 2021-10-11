@@ -170,6 +170,15 @@ def delete_str(all_str, delete_str):
                 new_list.append(i)
     return ' '.join(new_list)
 
+def delete_simb(all_str):
+    new_list = []
+    all_str = all_str.split(' ')
+    for i in all_str:
+        if i[0] or i[-1] == '"':
+            i = i.replace('"', '')
+            new_list.append(i)
+    return ' '.join(new_list)
+
 
 # прыжок
 def djamp(count_dj):
@@ -376,11 +385,11 @@ def processing_room(name):
     global stop, room_list, name_elem
     name1 = name
     if level not in name:
-        name1 = f'{name} ({level})'
-        if delete_str(name, 'Помещение') in room_list:
-            name1 = f'{name} ({room_list.count(delete_str(name, "Помещение"))}) ({level})'
+        name1 = f'{delete_simb(name)} ({level})'
+        if delete_simb(delete_str(name, 'Помещение')) in room_list:
+            name1 = f'{delete_simb(name)} ({room_list.count(delete_str(name, "Помещение"))}) ({level})'
         paste_name(name1)
-        room_list.append(delete_str(name, 'Помещение'))
+        room_list.append(delete_simb(delete_str(name, 'Помещение')))
     else:
         paste_name(name1)
     name_elem = name1
