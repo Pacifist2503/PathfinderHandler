@@ -15,6 +15,7 @@ door_name = ''
 room_name = ''
 ladder_name = ''
 name_elem = ''
+
 stop = False
 
 level_list = set()
@@ -174,7 +175,9 @@ def delete_simb(all_str):
     new_list = []
     all_str = all_str.split(' ')
     for i in all_str:
-        if i[0] or i[-1] == '"':
+        if i == '':
+            pass
+        elif i[0] or i[-1] == '"':
             i = i.replace('"', '')
             new_list.append(i)
     return ' '.join(new_list)
