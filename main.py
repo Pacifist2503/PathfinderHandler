@@ -63,9 +63,10 @@ def cmena_klav():
     pyautogui.press('alt', interval=0.1)
     pyautogui.press('enter', interval=0.1)
     pyautogui.press('down', presses=5, interval=0.1)
-    pyautogui.press('enter', interval=0.1)
-    pyautogui.press('tab', interval=0.1)
     pyautogui.press('enter', interval=0.5)
+    pyautogui.press('tab', interval=0.5)
+    pyautogui.press('enter', interval=0.5)
+    pyautogui.sleep(1)
     img_clear = pyautogui.locateCenterOnScreen(dir_pic + r'\clear.PNG', confidence=0.9)
     if img_clear:
         pyautogui.click(pyautogui.moveTo(img_clear, duration=0.5))
@@ -77,18 +78,19 @@ def cmena_klav():
     pyautogui.press('tab', interval=0.1)
     pyautogui.press('down', interval=0.1)
     pyautogui.press('right', interval=0.1)
-    pyautogui.press('down', presses=32, interval=0.3)
+    pyautogui.press('down', presses=23, interval=0.3)
     img_activ = pyautogui.locateCenterOnScreen(dir_pic + r'\activ.PNG', confidence=0.9)
     if img_activ:
         pyautogui.moveTo(img_activ, duration=0.5)
-        pyautogui.click(pyautogui.moveRel(250, 0, duration=0.5))
-        pyautogui.hotkey('shift', 'y', interval=0.1)
+        pyautogui.click(pyautogui.moveRel(350, 0, duration=0.5))
+        pyautogui.hotkey('shift', 'y', interval=0.5)
     else:
         pyautogui.alert(text='Картинка строки Выделение активного этажа не найдена', title='Внимание!', button='OK')
+    pyautogui.press('down', presses=15, interval=0.3)
     img_alfavit = pyautogui.locateCenterOnScreen(dir_pic + r'\ch_button_2.PNG', confidence=0.9)
     if img_alfavit:
         pyautogui.moveTo(img_alfavit, duration=0.5)
-        pyautogui.click(pyautogui.moveRel(250, 0, duration=0.5))
+        pyautogui.click(pyautogui.moveRel(350, 0, duration=0.5))
         pyautogui.hotkey('shift', 'a', interval=0.1)
     else:
         pyautogui.alert(text='Картинка строки Выделение по алфавиту не найдена', title='Внимание!', button='OK')
@@ -98,7 +100,7 @@ def cmena_klav():
         img_obch = pyautogui.locateCenterOnScreen(dir_pic + r'\ch_button_4.PNG', confidence=0.9)
         if img_obch:
             pyautogui.moveTo(img_obch, duration=0.5)
-            pyautogui.click(pyautogui.moveRel(250, 0, duration=0.5))
+            pyautogui.click(pyautogui.moveRel(350, 0, duration=0.5))
             pyautogui.hotkey('shift', 't', interval=0.1)
         else:
             pyautogui.alert(text='Картинка строки Выбрать соединенные компоненты не найдена', title='Внимание!',
